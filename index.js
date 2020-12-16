@@ -36,17 +36,17 @@ client.on('message', message => {
 		let reply = `${message.author}, `
 
 		if (!args.length) {
-			reply += 'you didn\'t provide any arguments !'
+			reply += 'vous n\'avez pas renseigné les paramètres !'
 		}
 		else if (args.length < command.args) {
-			reply += 'you didn\'t give enough arguments !'
+			reply += 'vous n\'avez pas renseigné assez de paramètres !'
 		}
 		else if (args.length > command.args) {
-			reply += 'you gave too many arguments !'
+			reply += 'vous avez renseigné trop de paramètres !'
 		}
 
 		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``
+			reply += `\nLa bonne utilisation est la suivante : \`${prefix}${command.name} ${command.usage}\``
 		}
 
 		return message.channel.send(reply)
@@ -57,7 +57,7 @@ client.on('message', message => {
 	}
 	catch (error) {
 		console.error(error)
-		message.reply('There was an error trying to execute that command enculé !')
+		message.reply('Il y a eu une erreur lors de l\'exécution de votre commande, veuillez réessayer.')
 	}
 })
 
