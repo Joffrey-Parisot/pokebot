@@ -2,8 +2,8 @@ const prefix = process.env.PREFIX
 
 module.exports = {
 	name: 'aide',
-	label: 'Help',
-	description: 'List all of my commands or info about a specific command.',
+	label: 'Aide',
+	description: 'Liste toutes les commandes, ou affiche les infos d\'une commande spécifique.',
 	usage: '[command name]',
 	execute(message, args) {
 		const data = []

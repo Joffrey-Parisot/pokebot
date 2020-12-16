@@ -1,14 +1,14 @@
 {
   "name": "pokebot",
   "version": "1.0.0",
-  "description": "A Discord bot for Pokémon RP servers",
+  "description": "A Discord bot for Pokémon RP servers : Pokébot !",
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config .",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["Pokémon", "PKMN", "Pokébot", "Role Play", "RP", "Discord", "Bot"],
   "author": "Parisot Joffrey",
   "license": "ISC",
   "dependencies": {

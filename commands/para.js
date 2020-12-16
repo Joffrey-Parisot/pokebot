@@ -1,29 +1,38 @@
+const { MessageAttachment } = require('discord.js')
 const hasChance = require('../helpers/probability')
 
 module.exports = {
 	name: 'para',
-	label: 'Paralyze',
-	description: 'Command to launch a paralyze roll',
+	label: 'Paralysie',
+	description: 'Permet de savoir si votre Pokémon est paralysé.',
 	args: 1,
 	usage: '[paralyze value (0 to 100)]',
 	execute(message, args) {
+		// Imgs Attachment
+		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo')
+		const statusImg = new MessageAttachment('../assets/img/status-logo.jpg', 'status-logo')
+		const paraImg = new MessageAttachment('../assets/img/paralyze-logo.png', 'paralyze-logo')
+		const failureImg = new MessageAttachment('../assets/img/failure-logo.png', 'failure-logo')
+
 		// TODO tester la value de paraChance
 		const paraChance = parseInt(args[0])
 		const isPara = hasChance(paraChance / 100)
 
-		// TODO : changer le domaine des images + remplacer les images par les bonnes
 		const embed = {
+			files: [
+				trainerImg, statusImg, paraImg, failureImg
+			],
 			color: '#ffde00',
 			title: isPara ? 'Votre Pokémon est paralysé !' : 'Votre Pokémon résiste à la paralysie !',
 			author: {
 				name: message.author.username,
-				icon_url: 'https://media.discordapp.net/attachments/785239103712919562/785242965613346816/PKM_UNLIMITED_Bot_Logo-icon.jpg'
+				icon_url: 'trainerImg://trainer-logo.jpg'
 			},
 			thumbnail: {
-				url: 'https://media.discordapp.net/attachments/784858926478131240/785233935939665940/PKM_UNLIMITED_Bot_Logo-01.jpg'
+				url: 'statusImg://status-logo.jpg'
 			},
 			image: {
-				url: 'https://media.discordapp.net/attachments/785239103712919562/785257789400154172/PKM_UNLIMITED_Bot_Logo-03.png'
+				url: `${isPara ? 'paraImg://paralyze-logo.png' : 'failureImg://failure-logo.png'}`
 			}
 		}
 

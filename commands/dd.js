@@ -1,17 +1,25 @@
+const { MessageAttachment } = require('discord.js')
 const hasChance = require('../helpers/probability')
 
+// TODO mettre des couleurs pour chaque args dans les messages (+ usage si possible)
+// TODO : mettre en const ../assets
+// TODO : faire un tableau avec le nom des images (trainer-logo.jpg etc) et boucler dessus pour créer un objet contenant les MessageAttachment
 module.exports = {
 	name: 'dd',
-	label: 'Damage dealer',
-	description: 'Command to launch a damage dealer',
+	label: 'Damage Dealer',
+	description: 'Permet d\'effectuer un tour de combat Pokémon.',
 	args: 7,
 	usage: '[attacker lvl] [defender lvl] [attack power] [attack precision] [stab ? Y/N] [resistance (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? Y/N]',
 	execute(message, args) {
-		// TODO mettre des couleurs pour chaque args dans les messages (+ usage si possible)
-		// TODO : changer le domaine des images
-		// TODO : faire une conf json pour chaque stats ? Comme ça, il suffit de faire une boucle pour les erreurs
-		console.log(args)
+		// Imgs Attachment
+		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo')
+		const ddImg = new MessageAttachment('../assets/img/dd-logo.jpg', 'dd-logo')
+		const paraImg = new MessageAttachment('../assets/img/para-logo.png', 'para-logo.png')
+		const missImg = new MessageAttachment('../assets/img/miss-logo.png', 'miss-logo.png')
+		const hitImg = new MessageAttachment('../assets/img/hit-logo.png', 'hit-logo.png')
+		const criticalImg = new MessageAttachment('../assets/img/critical-logo.png', 'critical-logo.png')
 
+		// Utils
 		const isOk = ['Y', 'O', 'y', 'o']
 		const isNok = ['N', 'n']
 		const normalAttackCoef = 1
@@ -21,6 +29,7 @@ module.exports = {
 		const criticalMultiplier = 1.5
 		const paraChance = 25 / 100
 
+		// Args
 		const attackerLvl = parseInt(args[0])
 		const defenderLvl = parseInt(args[1])
 		const attackPower = parseInt(args[2])
@@ -73,20 +82,22 @@ module.exports = {
 		if (isPara) {
 			const canAttack = hasChance(paraChance)
 
-			// TODO remplacer les images par les bonnes
 			if (!canAttack) {
 				const embed = {
+					files: [
+						trainerImg, ddImg, paraImg
+					],
 					color: '#ffde00',
 					title: 'Votre Pokémon est paralysé, il ne peut pas attaquer !',
 					author: {
 						name: message.author.username,
-						icon_url: 'https://media.discordapp.net/attachments/785239103712919562/785242965613346816/PKM_UNLIMITED_Bot_Logo-icon.jpg'
+						icon_url: 'trainerImg://trainer-logo.jpg'
 					},
 					thumbnail: {
-						url: 'https://media.discordapp.net/attachments/784858926478131240/785233935939665940/PKM_UNLIMITED_Bot_Logo-01.jpg'
+						url: 'ddImg://dd-logo.jpg'
 					},
 					image: {
-						url: 'https://cdn.discordapp.com/attachments/785239103712919562/785257783464296452/PKM_UNLIMITED_Bot_Logo-04.png'
+						url: 'paraImg://para-logo.png'
 					}
 				}
 
@@ -97,20 +108,22 @@ module.exports = {
 		// Miss part
 		const attackIsSuccessful = hasChance(attackPrecision / 100)
 
-		// TODO remplacer les images par les bonnes
 		if (!attackIsSuccessful) {
 			const embed = {
+				files: [
+					trainerImg, ddImg, missImg
+				],
 				color: '#ff0000',
 				title: 'Le Pokémon adverse évite l\'attaque !',
 				author: {
 					name: message.author.username,
-					icon_url: 'https://media.discordapp.net/attachments/785239103712919562/785242965613346816/PKM_UNLIMITED_Bot_Logo-icon.jpg'
+					icon_url: 'trainerImg://trainer-logo.jpg'
 				},
 				thumbnail: {
-					url: 'https://media.discordapp.net/attachments/784858926478131240/785233935939665940/PKM_UNLIMITED_Bot_Logo-01.jpg'
+					url: 'ddImg://dd-logo.jpg'
 				},
 				image: {
-					url: 'https://cdn.discordapp.com/attachments/785239103712919562/785257783464296452/PKM_UNLIMITED_Bot_Logo-04.png'
+					url: 'missImg://miss-logo.png'
 				}
 			}
 
@@ -120,27 +133,26 @@ module.exports = {
 		// Calculation part
 		const isStabbedAttack = isOk.includes(stab)
 		const stabValue = isStabbedAttack ? stabbedAttackCoef : normalAttackCoef
-
-		const isCriticalHit = hasChance(criticalChance)
-
 		const damages = Math.ceil(((attackerLvl / defenderLvl) * attackPower) * stabValue * resistance)
+		const isCriticalHit = hasChance(criticalChance)
 		const finalDamages = isCriticalHit ? damages * criticalMultiplier : damages
 
-
-		// TODO coup critique
 		const embed = {
+			files: [
+				trainerImg, ddImg, hitImg, criticalImg
+			],
 			color: '#00ff00',
 			title: 'Votre Pokémon vient de lancer une attaque !',
 			author: {
 				name: message.author.username,
-				icon_url: 'https://media.discordapp.net/attachments/785239103712919562/785242965613346816/PKM_UNLIMITED_Bot_Logo-icon.jpg'
+				icon_url: 'trainerImg://trainer-logo.jpg'
 			},
-			description: `Votre Pokémon inflige **${finalDamages} point${finalDamages > 1 ? 's' : ''} de dégât${finalDamages > 1 ? 's' : ''}** à l'ennemi.\n\n*(Pensez à déduire ce montant de sa barre de points de vie)*`,
+			description: `${isCriticalHit ? 'Coup critique ! ' : ''}Votre Pokémon inflige **${finalDamages} point${finalDamages > 1 ? 's' : ''} de dégât${finalDamages > 1 ? 's' : ''}** à l'ennemi.\n\n*(Pensez à déduire ce montant de sa barre de points de vie)*`,
 			thumbnail: {
-				url: 'https://media.discordapp.net/attachments/784858926478131240/785233935939665940/PKM_UNLIMITED_Bot_Logo-01.jpg'
+				url: 'ddImg://dd-logo.jpg'
 			},
 			image: {
-				url: 'https://media.discordapp.net/attachments/785239103712919562/785257789400154172/PKM_UNLIMITED_Bot_Logo-03.png'
+				url: `${isCriticalHit ? 'criticalImg://critical-logo.png' : 'hitImg://hit-logo.png'}`
 			}
 		}
 
