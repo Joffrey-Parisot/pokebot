@@ -20,10 +20,8 @@ client.once('ready', () => {
 })
 
 client.on('message', message => {
-	// TODO revoir le nommage name vs label ? + le nom des fichiers
-	// TODO mettre des gifs aléatoires
-
-	console.log(message.content)
+	// TODO : i18n
+	// TODO : revoir le nommage name vs label ? + le nom des fichiers
 
 	if (!message.content.startsWith(prefix) || message.author.bot) return
 

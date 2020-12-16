@@ -1,15 +1,15 @@
 const { MessageAttachment } = require('discord.js')
 const hasChance = require('../helpers/probability')
 
-// TODO mettre des couleurs pour chaque args dans les messages (+ usage si possible)
-// TODO : mettre en const ./assets
+// TODO : mettre des couleurs pour chaque args dans les messages (+ usage si possible)
+// TODO : mettre en const ./assets (dans un fichier config pour le coup) --> utile pour la const de fin de message
 // TODO : faire un tableau avec le nom des images (trainer-logo.jpg etc) et boucler dessus pour créer un objet contenant les MessageAttachment
 module.exports = {
 	name: 'dd',
 	label: 'Damage Dealer',
 	description: 'Permet d\'effectuer un tour de combat Pokémon.',
 	args: 7,
-	usage: '[lvl attaquant] [lvl défenseur] [puissance d\'attaque] [précision] [stab ? Y/N] [faiblesse (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? Y/N]',
+	usage: '[lvl attaquant] [lvl défenseur] [puissance d\'attaque] [précision] [stab ? O/N (ou Y/N)] [faiblesse (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? O/N (ou Y/N)]',
 	execute(message, args) {
 		// Imgs Attachment
 		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
@@ -39,40 +39,41 @@ module.exports = {
 		const para = args[6]
 
 		// Errors part
+		const endMessage = 'Veuillez corriger et relancer la commande.'
 		let reply = `${message.author.username}, `
 
 		if (isNaN(attackerLvl) || attackerLvl < 1 || attackerLvl > 100) {
-			reply += 'the attacker level must be between 1 and 100, please correct your value.'
+			reply += `le lvl de l'attaquant doit être compris entre 1 et 100. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (isNaN(defenderLvl) || defenderLvl < 1 || attackerLvl > 100) {
-			reply += 'the defender level must be between 1 and 100, please correct your value.'
+			reply += `le lvl du défenseur doit être compris entre 1 et 100. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (isNaN(attackPower) || attackPower < 0 || attackPower > 250) {
-			reply += 'the attack power must be between 0 and 250, please correct your value.'
+			reply += `la puissance de l'attaque doit être comprise entre 0 et 250. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (isNaN(attackPrecision) || attackPrecision < 33 || attackPrecision > 100) {
-			reply += 'the attack precision must be between 33 and 100, please correct your value.'
+			reply += `la précision de l'attaque doit être comprise entre 33 et 100. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (!isOk.includes(stab) && !isNok.includes(stab)) {
-			reply += 'the stab must be Y/N (or y/n, or O/N, or o/n), please correct your value.'
+			reply += `le stab doit valoir O/N (ou Y/N). ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (isNaN(resistance) || !resistanceSlots.includes(resistance)) {
-			reply += `the resistance must be between ${resistanceSlots[0]} and ${resistanceSlots.slice(-1).pop()}, please correct your value.`
+			reply += `la résistance doit être comprise entre ${resistanceSlots[0]} et ${resistanceSlots.slice(-1).pop()}. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
 		if (!isOk.includes(para) && !isNok.includes(para)) {
-			reply += 'the para must be Y/N (or y/n, or O/N, or o/n), please correct your value.'
+			reply += `la paralysie doit valoir O/N (ou Y/N). ${endMessage}`
 			return message.channel.send(reply)
 		}
 

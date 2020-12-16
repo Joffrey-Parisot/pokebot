@@ -9,19 +9,22 @@ module.exports = {
 		const data = []
 		const { commands } = message.client
 
+		console.log('this')
+		console.log(this)
+
 		if (!args.length) {
-			data.push('Here\'s a list of all my commands:')
+			data.push('Voici la liste des commandes disponibles :')
 			data.push(commands.map(command => command.name).join(', '))
-			data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`)
+			data.push(`\nVous pouvez envoyer \`${prefix}${this.name} [command name]\` afin d'afficher plus d'informations à propos d'une commande en particulier !`)
 
 			return message.author.send(data, { split: true })
 				.then(() => {
 					if (message.channel.type === 'dm') return
-					message.reply('I\'ve sent you a DM with all my commands!')
+					message.reply('Je viens de vous envoyer un MP listant les commandes disponibles !')
 				})
 				.catch(error => {
 					console.error(`Could not send help DM to ${message.author.tag}.\n`, error)
-					message.reply('it seems like I can\'t DM you! Do you have DMs disabled?')
+					message.reply('Il semble que je ne peux pas vous envoyer de MP ! Sont-ils désactivés ?')
 				})
 		}
 
@@ -29,13 +32,13 @@ module.exports = {
 		const command = commands.get(name)
 
 		if (!command) {
-			return message.reply('that\'s not a valid command!')
+			return message.reply('Ce n\'est pas une commande valide !')
 		}
 
-		data.push(`**Name:** ${command.label}`)
+		data.push(`**Nom : ** ${command.label}`)
 
-		if (command.description) data.push(`**Description:** ${command.description}`)
-		if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`)
+		if (command.description) data.push(`**Description : ** ${command.description}`)
+		if (command.usage) data.push(`**Utilisation : ** ${prefix}${command.name} ${command.usage}`)
 
 		message.channel.send(data, { split: true })
 	}
