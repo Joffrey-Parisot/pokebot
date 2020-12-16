@@ -26,13 +26,13 @@ module.exports = {
 			title: isPara ? 'Votre Pokémon est paralysé !' : 'Votre Pokémon résiste à la paralysie !',
 			author: {
 				name: message.author.username,
-				icon_url: 'trainerImg://trainer-logo.jpg'
+				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			thumbnail: {
-				url: 'statusImg://status-logo.jpg'
+				url: 'attachment://status-logo.jpg'
 			},
 			image: {
-				url: `${isPara ? 'paraImg://paralyze-logo.png' : 'failureImg://failure-logo.png'}`
+				url: `${isPara ? 'attachment://paralyze-logo.png' : 'attachment://failure-logo.png'}`
 			}
 		}
 

@@ -91,13 +91,13 @@ module.exports = {
 					title: 'Votre Pokémon est paralysé, il ne peut pas attaquer !',
 					author: {
 						name: message.author.username,
-						icon_url: 'trainerImg://trainer-logo.jpg'
+						icon_url: 'attachment://trainer-logo.jpg'
 					},
 					thumbnail: {
-						url: 'ddImg://dd-logo.jpg'
+						url: 'attachment://dd-logo.jpg'
 					},
 					image: {
-						url: 'paraImg://para-logo.png'
+						url: 'attachment://para-logo.png'
 					}
 				}
 
@@ -117,13 +117,13 @@ module.exports = {
 				title: 'Le Pokémon adverse évite l\'attaque !',
 				author: {
 					name: message.author.username,
-					icon_url: 'trainerImg://trainer-logo.jpg'
+					icon_url: 'attachment://trainer-logo.jpg'
 				},
 				thumbnail: {
-					url: 'ddImg://dd-logo.jpg'
+					url: 'attachment://dd-logo.jpg'
 				},
 				image: {
-					url: 'missImg://miss-logo.png'
+					url: 'attachment://miss-logo.png'
 				}
 			}
 
@@ -145,14 +145,14 @@ module.exports = {
 			title: 'Votre Pokémon vient de lancer une attaque !',
 			author: {
 				name: message.author.username,
-				icon_url: 'trainerImg://trainer-logo.jpg'
+				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: `${isCriticalHit ? 'Coup critique ! ' : ''}Votre Pokémon inflige **${finalDamages} point${finalDamages > 1 ? 's' : ''} de dégât${finalDamages > 1 ? 's' : ''}** à l'ennemi.\n\n*(Pensez à déduire ce montant de sa barre de points de vie)*`,
 			thumbnail: {
-				url: 'ddImg://dd-logo.jpg'
+				url: 'attachment://dd-logo.jpg'
 			},
 			image: {
-				url: `${isCriticalHit ? 'criticalImg://critical-logo.png' : 'hitImg://hit-logo.png'}`
+				url: `${isCriticalHit ? 'attachment://critical-logo.png' : 'attachment://hit-logo.png'}`
 			}
 		}
 

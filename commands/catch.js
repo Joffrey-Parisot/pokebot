@@ -30,14 +30,14 @@ module.exports = {
 			title: hasCatch ? 'Félicitations, le Pokémon sauvage a été capturé !' : 'Raté ! Vous y étiez presque !',
 			author: {
 				name: message.author.username,
-				icon_url: 'trainerImg://trainer-logo.jpg'
+				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: hasCatch ? '*(Pensez à vous procurer un certificat pour authentifier votre nouveau Pokémon)*' : '',
 			thumbnail: {
-				url: 'catchImg://catch-logo.jpg'
+				url: 'attachment://catch-logo.jpg'
 			},
 			image: {
-				url: `${hasCatch ? 'catchGif://catch.gif' : 'failedCatchGif://failed-catch-01.gif'}`
+				url: `${hasCatch ? 'attachment://catch.gif' : 'attachment://failed-catch-01.gif'}`
 			}
 		}
 
