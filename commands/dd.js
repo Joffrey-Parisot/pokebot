@@ -9,7 +9,7 @@ module.exports = {
 	label: 'Damage Dealer',
 	description: 'Permet d\'effectuer un tour de combat Pokémon.',
 	args: 7,
-	usage: '[attacker lvl] [defender lvl] [attack power] [attack precision] [stab ? Y/N] [resistance (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? Y/N]',
+	usage: '[lvl attaquant] [lvl défenseur] [puissance d\'attaque] [précision] [stab ? Y/N] [faiblesse (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? Y/N]',
 	execute(message, args) {
 		// Imgs Attachment
 		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
@@ -136,11 +136,14 @@ module.exports = {
 		const damages = Math.ceil(((attackerLvl / defenderLvl) * attackPower) * stabValue * resistance)
 		const isCriticalHit = hasChance(criticalChance)
 		const finalDamages = isCriticalHit ? damages * criticalMultiplier : damages
+		const files = isCriticalHit ? [
+			trainerImg, ddImg, criticalImg
+		] : [
+			trainerImg, ddImg, hitImg
+		]
 
 		const embed = {
-			files: [
-				trainerImg, ddImg, hitImg, criticalImg
-			],
+			files,
 			color: '#00ff00',
 			title: 'Votre Pokémon vient de lancer une attaque !',
 			author: {

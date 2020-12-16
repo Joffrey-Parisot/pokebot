@@ -17,11 +17,14 @@ module.exports = {
 		// TODO tester la value de paraChance
 		const paraChance = parseInt(args[0])
 		const isPara = hasChance(paraChance / 100)
+		const files = isPara ? [
+			trainerImg, statusImg, paraImg
+		] : [
+			trainerImg, statusImg, failureImg
+		]
 
 		const embed = {
-			files: [
-				trainerImg, statusImg, paraImg, failureImg
-			],
+			files,
 			color: '#ffde00',
 			title: isPara ? 'Votre Pokémon est paralysé !' : 'Votre Pokémon résiste à la paralysie !',
 			author: {

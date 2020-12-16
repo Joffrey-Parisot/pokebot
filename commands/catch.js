@@ -21,11 +21,14 @@ module.exports = {
 		const bonus = parseInt(args[1])
 
 		const hasCatch = hasChance((ballType + bonus) / 100)
+		const files = hasCatch ? [
+			trainerImg, catchImg, catchGif
+		] : [
+			trainerImg, catchImg, failedCatchGif
+		]
 
 		const embed = {
-			files: [
-				trainerImg, catchImg, catchGif, failedCatchGif
-			],
+			files,
 			color: '#8a25bf',
 			title: hasCatch ? 'Félicitations, le Pokémon sauvage a été capturé !' : 'Raté ! Vous y étiez presque !',
 			author: {
