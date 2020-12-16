@@ -2,7 +2,7 @@ const { MessageAttachment } = require('discord.js')
 const hasChance = require('../helpers/probability')
 
 // TODO mettre des couleurs pour chaque args dans les messages (+ usage si possible)
-// TODO : mettre en const ../assets
+// TODO : mettre en const ./assets
 // TODO : faire un tableau avec le nom des images (trainer-logo.jpg etc) et boucler dessus pour créer un objet contenant les MessageAttachment
 module.exports = {
 	name: 'dd',
@@ -12,12 +12,12 @@ module.exports = {
 	usage: '[attacker lvl] [defender lvl] [attack power] [attack precision] [stab ? Y/N] [resistance (0 / 0.5 / 1 / 2 / 4 / 8)] [para ? Y/N]',
 	execute(message, args) {
 		// Imgs Attachment
-		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
-		const ddImg = new MessageAttachment('../assets/img/dd-logo.jpg', 'dd-logo.jpg')
-		const paraImg = new MessageAttachment('../assets/img/para-logo.png', 'para-logo.png')
-		const missImg = new MessageAttachment('../assets/img/miss-logo.png', 'miss-logo.png')
-		const hitImg = new MessageAttachment('../assets/img/hit-logo.png', 'hit-logo.png')
-		const criticalImg = new MessageAttachment('../assets/img/critical-logo.png', 'critical-logo.png')
+		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
+		const ddImg = new MessageAttachment('./assets/img/dd-logo.jpg', 'dd-logo.jpg')
+		const paraImg = new MessageAttachment('./assets/img/para-logo.png', 'para-logo.png')
+		const missImg = new MessageAttachment('./assets/img/miss-logo.png', 'miss-logo.png')
+		const hitImg = new MessageAttachment('./assets/img/hit-logo.png', 'hit-logo.png')
+		const criticalImg = new MessageAttachment('./assets/img/critical-logo.png', 'critical-logo.png')
 
 		// Utils
 		const isOk = ['Y', 'O', 'y', 'o']
