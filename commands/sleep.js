@@ -7,9 +7,9 @@ module.exports = {
 	usage: ' ',
 	execute(message) {
 		// Imgs Attachment
-		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo')
-		const statusImg = new MessageAttachment('../assets/img/status-logo.jpg', 'status-logo')
-		const sleepImg = new MessageAttachment('../assets/img/sleep-logo.png', 'sleep-logo')
+		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
+		const statusImg = new MessageAttachment('./assets/img/status-logo.jpg', 'status-logo.jpg')
+		const sleepImg = new MessageAttachment('./assets/img/sleep-logo.png', 'sleep-logo.png')
 
 		const sleepingTurns = Math.floor(Math.random() * 3) + 1
 
@@ -21,14 +21,14 @@ module.exports = {
 			title: 'Votre Pokémon s\'endors !',
 			author: {
 				name: message.author.username,
-				icon_url: 'trainerImg://trainer-logo.jpg'
+				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: `Sa phase de sommeil durera **${sleepingTurns} tour${sleepingTurns > 1 ? 's' : ''}**.`,
 			thumbnail: {
-				url: 'statusImg://status-logo.jpg'
+				url: 'attachment://status-logo.jpg'
 			},
 			image: {
-				url: 'sleepImg://sleep-logo.png'
+				url: 'attachment://sleep-logo.png'
 			}
 		}
 

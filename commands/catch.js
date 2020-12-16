@@ -11,10 +11,10 @@ module.exports = {
 		// ATTENTION BONUS peut être null (d'où le 1 args)
 
 		// Imgs Attachment
-		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo')
-		const catchImg = new MessageAttachment('../assets/img/catch-logo.jpg', 'catch-logo')
+		const trainerImg = new MessageAttachment('../assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
+		const catchImg = new MessageAttachment('../assets/img/catch-logo.jpg', 'catch-logo.jpg')
 		const catchGif = new MessageAttachment('../assets/img/catch.gif', 'catch.gif')
-		const failedCatchGif = new MessageAttachment('../assets/img/failed-catch-01.gif', 'failed-catch-01')
+		const failedCatchGif = new MessageAttachment('../assets/img/failed-catch-01.gif', 'failed-catch-01.gif')
 
 		// TODO faire les tests des values
 		const ballType = parseInt(args[0])
