@@ -35,7 +35,7 @@ module.exports = {
 		const attackPower = parseInt(args[2])
 		const attackPrecision = parseInt(args[3])
 		const stab = args[4]
-		const resistance = parseInt(args[5])
+		const resistance = parseFloat(args[5].replace(',', '.'))
 		const para = args[6]
 
 		// Errors part
@@ -68,7 +68,7 @@ module.exports = {
 		}
 
 		if (isNaN(resistance) || !resistanceSlots.includes(resistance)) {
-			reply += `la résistance doit être comprise entre ${resistanceSlots[0]} et ${resistanceSlots.slice(-1).pop()}. ${endMessage}`
+			reply += `la faiblesse doit être de ${resistanceSlots.toString().replace(/,/gi, ' / ')}. ${endMessage}`
 			return message.channel.send(reply)
 		}
 
