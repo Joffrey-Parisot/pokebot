@@ -40,7 +40,7 @@ module.exports = {
 
 		// Errors part
 		const endMessage = 'Veuillez corriger et relancer la commande.'
-		let reply = `${message.author.username}, `
+		let reply = `${message.author}, `
 
 		if (isNaN(attackerLvl) || attackerLvl < 1 || attackerLvl > 100) {
 			reply += `le lvl de l'attaquant doit être compris entre 1 et 100. ${endMessage}`
@@ -91,7 +91,7 @@ module.exports = {
 					color: '#ffde00',
 					title: 'Votre Pokémon est paralysé, il ne peut pas attaquer !',
 					author: {
-						name: message.author.username,
+						name: message.member.displayName,
 						icon_url: 'attachment://trainer-logo.jpg'
 					},
 					thumbnail: {
@@ -117,7 +117,7 @@ module.exports = {
 				color: '#ff0000',
 				title: 'Le Pokémon adverse évite l\'attaque !',
 				author: {
-					name: message.author.username,
+					name: message.member.displayName,
 					icon_url: 'attachment://trainer-logo.jpg'
 				},
 				thumbnail: {
@@ -148,7 +148,7 @@ module.exports = {
 			color: '#00ff00',
 			title: 'Votre Pokémon vient de lancer une attaque !',
 			author: {
-				name: message.author.username,
+				name: message.member.displayName,
 				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: `${isCriticalHit ? 'Coup critique ! ' : ''}Votre Pokémon inflige **${finalDamages} point${finalDamages > 1 ? 's' : ''} de dégât${finalDamages > 1 ? 's' : ''}** à l'ennemi.\n\n*(Pensez à déduire ce montant de sa barre de points de vie)*`,

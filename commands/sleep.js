@@ -20,7 +20,7 @@ module.exports = {
 			color: '#03d8dd',
 			title: 'Votre Pokémon s\'endors !',
 			author: {
-				name: message.author.username,
+				name: message.member.displayName,
 				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: `Sa phase de sommeil durera **${sleepingTurns} tour${sleepingTurns > 1 ? 's' : ''}**.`,

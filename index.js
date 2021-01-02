@@ -25,35 +25,41 @@ client.on('message', message => {
 
 	if (!message.content.startsWith(prefix) || message.author.bot) return
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/)
-	const commandName = args.shift().toLowerCase()
+	const userArgs = message.content.slice(prefix.length).trim().split(/ +/)
+	const commandName = userArgs.shift().toLowerCase()
 
 	if (!client.commands.has(commandName)) return
 
 	const command = client.commands.get(commandName)
 
-	if (command.args && args.length !== command.args) {
-		let reply = `${message.author}, `
+	if (command.args) {
+		let hasError = true
+		let reply = ''
 
-		if (!args.length) {
+		if (!userArgs.length) {
 			reply += 'vous n\'avez pas renseigné les paramètres !'
 		}
-		else if (args.length < command.args) {
+		else if (userArgs.length < command.args) {
 			reply += 'vous n\'avez pas renseigné assez de paramètres !'
 		}
-		else if (args.length > command.args) {
+		else if (!command.optionalArgs && userArgs.length > command.args || command.optionalArgs && userArgs.length > command.optionalArgs) {
 			reply += 'vous avez renseigné trop de paramètres !'
 		}
-
-		if (command.usage) {
-			reply += `\nLa bonne utilisation est la suivante : \`${prefix}${command.name} ${command.usage}\``
+		else {
+			hasError = false
 		}
 
-		return message.channel.send(reply)
+		if (hasError) {
+			if (command.usage) {
+				reply += `\nLa bonne utilisation est la suivante : \`${prefix}${command.name} ${command.usage}\``
+			}
+
+			return message.channel.send(`${message.author}, ` + reply)
+		}
 	}
 
 	try {
-		command.execute(message, args)
+		command.execute(message, userArgs)
 	}
 	catch (error) {
 		console.error(error)

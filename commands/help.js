@@ -9,9 +9,6 @@ module.exports = {
 		const data = []
 		const { commands } = message.client
 
-		console.log('this')
-		console.log(this)
-
 		if (!args.length) {
 			data.push('Voici la liste des commandes disponibles :')
 			data.push(commands.map(command => command.name).join(', '))

@@ -18,7 +18,7 @@ module.exports = {
 		const paraChance = parseInt(args[0])
 
 		// Error part
-		let reply = `${message.author.username}, `
+		let reply = `${message.author}, `
 
 		if (isNaN(paraChance) || paraChance < 1 || paraChance > 100) {
 			reply += 'la précision de la capacité susceptible d\'appliquer la paralysie doit être comprise entre 1 et 100, veuillez la corriger et relancer la commande.'
@@ -37,7 +37,7 @@ module.exports = {
 			color: '#ffde00',
 			title: isPara ? 'Votre Pokémon est paralysé !' : 'Votre Pokémon résiste à la paralysie !',
 			author: {
-				name: message.author.username,
+				name: message.member.displayName,
 				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			thumbnail: {

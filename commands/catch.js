@@ -6,7 +6,8 @@ module.exports = {
 	label: 'Capture',
 	description: 'Permet de capturer un Pokémon',
 	args: 1,
-	usage: '[pokéball (50%) / superball (55%) / hyperball (60%)] [bonus de capture (0% / 5% / 10% / 15%)]',
+	optionalArgs: 2,
+	usage: '[pokéball (50%) / superball (55%) / hyperball (60%)] [bonus de capture : 0 / 5 / 10 / 15 %]',
 	execute(message, args) {
 		// Imgs Attachment
 		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
@@ -23,7 +24,7 @@ module.exports = {
 		const bonus = args[1] === undefined ? 0 : parseInt(args[1])
 
 		// Errors part
-		let reply = `${message.author.username}, `
+		let reply = `${message.author}, `
 
 		if (!Object.keys(ballTypes).includes(ball)) {
 			reply += 'le type de ball est inconnu. Veuillez réessayer avec pokéball / superball / hyperball et relancer la commande.'
@@ -48,7 +49,7 @@ module.exports = {
 			color: '#8a25bf',
 			title: hasCatch ? 'Félicitations, le Pokémon sauvage a été capturé !' : 'Raté ! Vous y étiez presque !',
 			author: {
-				name: message.author.username,
+				name: message.member.displayName,
 				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: hasCatch ? '*(Pensez à vous procurer un certificat pour authentifier votre nouveau Pokémon)*' : '',
