@@ -1,5 +1,5 @@
 {
-  "name": "pokebot",
+  "name": "@joffrey-parisot/pokebot",
   "version": "1.2.0",
   "description": "A Discord bot for Pokémon RP servers : Pokébot !",
   "main": "index.js",
