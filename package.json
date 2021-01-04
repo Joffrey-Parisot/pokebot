@@ -1,6 +1,6 @@
 {
   "name": "pokebot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Discord bot for Pokémon RP servers : Pokébot !",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,15 @@
     "type": "git",
     "url": "git+https://github.com/Joffrey-Parisot/pokebot.git"
   },
-  "keywords": ["pokémon", "pkmn", "pokébot", "role play", "rp", "discord", "bot"],
+  "keywords": [
+    "pokémon",
+    "pkmn",
+    "pokébot",
+    "role play",
+    "rp",
+    "discord",
+    "bot"
+  ],
   "author": "Parisot Joffrey <joffrey.parisot2@gmail.com>",
   "license": "ISC",
   "bugs": {
