@@ -6,11 +6,19 @@
   "scripts": {
     "start": "node -r dotenv/config .",
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint"
   },
-  "keywords": ["Pokémon", "PKMN", "Pokébot", "Role Play", "RP", "Discord", "Bot"],
-  "author": "Parisot Joffrey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joffrey-Parisot/pokebot.git"
+  },
+  "keywords": ["pokémon", "pkmn", "pokébot", "role play", "rp", "discord", "bot"],
+  "author": "Parisot Joffrey <joffrey.parisot2@gmail.com>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joffrey-Parisot/pokebot/issues"
+  },
+  "homepage": "https://github.com/Joffrey-Parisot/pokebot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
