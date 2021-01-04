@@ -34,8 +34,9 @@ module.exports = {
 
 		data.push(`**Nom : ** ${command.label}`)
 
-		if (command.description) data.push(`**Description : ** ${command.description}`)
-		if (command.usage) data.push(`**Utilisation : ** ${prefix}${command.name} ${command.usage}`)
+		if (command.description) data.push(`**Description : **${command.description}`)
+		if (command.usage) data.push(`**Utilisation : **${prefix}${command.name} ${command.usage}`)
+		if (command.cooldown) data.push(`**Délai : **${command.cooldown}s`)
 
 		message.channel.send(data, { split: true })
 	}
