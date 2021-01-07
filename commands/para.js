@@ -20,7 +20,7 @@ module.exports = {
 		// Error part
 		let reply = `${message.author}, `
 
-		if (isNaN(paraChance) || paraChance < 1 || paraChance > 100) {
+		if (isNaN(paraChance) || paraChance < 0 || paraChance > 100) {
 			reply += 'la précision de la capacité susceptible d\'appliquer la paralysie doit être comprise entre 1 et 100, veuillez la corriger et relancer la commande.'
 			return message.channel.send(reply)
 		}

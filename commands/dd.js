@@ -27,7 +27,7 @@ module.exports = {
 		const resistanceSlots = [0, 0.5, 1, 2, 4, 8]
 		const criticalChance = 1 / 16
 		const criticalMultiplier = 1.5
-		const paraChance = 25 / 100
+		const paraChance = 75 / 100
 
 		// Args
 		const attackerLvl = parseInt(args[0])

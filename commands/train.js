@@ -8,26 +8,26 @@ module.exports = {
 	execute(message) {
 		// Imgs Attachment
 		const trainerImg = new MessageAttachment('./assets/img/trainer-logo.jpg', 'trainer-logo.jpg')
-		const statusImg = new MessageAttachment('./assets/img/status-logo.jpg', 'status-logo.jpg')
-		const randomTrainPath = Math.floor(Math.random() * 2) + 1 === 1 ? 'train-01.gif' : 'train-02.gif'
-		const trainImg = new MessageAttachment(`./assets/img/${randomTrainPath}`, randomTrainPath)
+		const trainingImg = new MessageAttachment('./assets/img/training-logo.jpg', 'training-logo.jpg')
+		const randomTrainGifPath = Math.floor(Math.random() * 2) + 1 === 1 ? 'train-01.gif' : 'train-02.gif'
+		const trainGif = new MessageAttachment(`./assets/img/${randomTrainGifPath}`, randomTrainGifPath)
 
 		const embed = {
 			files: [
-				trainerImg, statusImg, trainImg
+				trainerImg, trainingImg, trainGif
 			],
 			color: '#03d8dd',
-			title: 'Votre Pokémon s\'entraîne !',
+			title: 'Vos Pokémon s\'entraînent !',
 			author: {
 				name: message.member.displayName,
-				icon_url: 'attachment://trainer-logo.jpg'
+				icon_url: 'attachment://training-logo.jpg'
 			},
-			description: 'Son entraînement durera **1h**.',
+			description: 'Leur entraînement durera **1h00**.',
 			thumbnail: {
 				url: 'attachment://status-logo.jpg'
 			},
 			image: {
-				url: `attachment://${randomTrainPath}`
+				url: `attachment://${randomTrainGifPath}`
 			}
 		}
 
