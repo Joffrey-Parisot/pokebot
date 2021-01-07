@@ -20,11 +20,11 @@ module.exports = {
 			title: 'Vos Pokémon s\'entraînent !',
 			author: {
 				name: message.member.displayName,
-				icon_url: 'attachment://training-logo.jpg'
+				icon_url: 'attachment://trainer-logo.jpg'
 			},
 			description: 'Leur entraînement durera **1h00**.',
 			thumbnail: {
-				url: 'attachment://status-logo.jpg'
+				url: 'attachment://training-logo.jpg'
 			},
 			image: {
 				url: `attachment://${randomTrainGifPath}`
